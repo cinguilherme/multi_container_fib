@@ -1,0 +1,9 @@
+{
+    "AWSEVDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "cinguilherme/multic-client"
+        }
+    ]
+}

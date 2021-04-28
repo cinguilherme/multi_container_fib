@@ -9,7 +9,7 @@ before_install:
   - docker build -t cinguilherme/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true cinguilherme/react-test npm test -- --converage
+  - docker run -e CI=true cinguilherme/react-test npm test -- --coverage
 
 after_success:
   - docker build -t cinguilherme/multic-client ./client

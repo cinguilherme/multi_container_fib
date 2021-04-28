@@ -6,7 +6,7 @@ services:
 language: generic
 
 before_install:
-  - docker build -t cinguilherme/react-test -f ./client/Dockerfile.dev .
+  - docker build -t cinguilherme/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true cinguilherme/react-test npm test -- --converage

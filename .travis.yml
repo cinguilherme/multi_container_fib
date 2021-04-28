@@ -1,0 +1,26 @@
+sudo: required
+
+services:
+  - docker
+
+language: generic
+
+before_install:
+  - docker build -t cinguilherme/react-test -f ./client/Dockerfile.dev .
+
+script:
+  - docker run -e CI=true cinguilherme/react-test npm test -- --converage
+
+after_success:
+  - docker build -t cinguilherme/multic-client ./client
+  - docker build -t cinguilherme/multic-nginx ./nginx
+  - docker build -t cinguilherme/multic-server ./server
+  - docker build -t cinguilherme/multic-worker ./worker
+  
+  # push to dockerhub, loging CLI
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USR" --password-stdin
+  - docker push cinguilherme/multic-client
+  - docker push cinguilherme/multic-nginx
+  - docker push cinguilherme/multic-server
+  - docker push cinguilherme/multic-worker
+

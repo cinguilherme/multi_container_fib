@@ -8,7 +8,7 @@
             "essential": false
         },
         {
-            "name":"api",
+            "name":"server",
             "image": "cinguilherme/multic-server",
             "hostname": "api",
             "essential": false
@@ -23,7 +23,17 @@
             "name": "nginx",
             "image": "cinguilherme/multic-nginx",
             "hostname": "nginx",
-            "essential": true 
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "server",
+                "client"
+            ]
         }
     ]
 }

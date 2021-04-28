@@ -3,7 +3,27 @@
     "containerDefinitions": [
         {
             "name": "client",
-            "image": "cinguilherme/multic-client"
+            "image": "cinguilherme/multic-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name":"api",
+            "image": "cinguilherme/multic-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "cinguilherme/multic-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "cinguilherme/multic-nginx",
+            "hostname": "nginx",
+            "essential": true 
         }
     ]
 }

@@ -24,3 +24,14 @@ after_success:
   - docker push cinguilherme/multic-server
   - docker push cinguilherme/multic-worker
 
+deploy:
+  provider: elasticbeanstalk
+  region: 'sa-east-1'
+  app: 'multic-docker'
+  env: 'Multicdocker-env'
+  bucket_name: 'elasticbeanstalk-sa-east-1-838492447918'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

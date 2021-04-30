@@ -10,5 +10,8 @@ spec:
     - port: 3050
       targetPort: 3000
       nodePort: 31515
+    - port: 3051
+      targetPort: 3001
+      nodePort: 31515
   selector:
     component: web

@@ -17,4 +17,8 @@ spec:
       containers:
         - name: worker
           image: cinguilherme/multic-worker
-          
+          env:
+            - name: REDIS_HOST
+              value: redis-clusterip-service
+            - name: REDIS_PORT
+              value: '6379'

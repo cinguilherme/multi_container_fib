@@ -5,7 +5,8 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx
+FROM nginx:1.15.2-alpine
+COPY --from=builder /app/build /var/www
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 3000
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/build /usr/share/nginx/html
+ENTRYPOINT ["nginx","-g","daemon off;"]

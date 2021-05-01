@@ -1,6 +1,6 @@
 SHA=$(git rev-parse HEAD)
 
-docker build -t cinguilherme/multic-client:latest -t cinguilherme/multic-client:$SHA -f ./worker/Dockerfile ./client
+docker build -t cinguilherme/multic-client:latest -t cinguilherme/multic-client:$SHA -f ./client/Dockerfile ./client
 docker push cinguilherme/multic-client:$SHA
 docker push cinguilherme/multic-client:latest
 

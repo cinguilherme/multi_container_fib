@@ -17,5 +17,12 @@ spec:
       containers:
         - name: client
           image: cinguilherme/multic-client
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
           ports:
             - containerPort: 3000

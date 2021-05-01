@@ -5,7 +5,7 @@ metadata:
   name: server-deployment
 
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       component: api
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: cinguilherme/multic-server
+          image: cinguilherme/multic-server:v3
           ports:
             - containerPort: 5000
           env:
@@ -32,7 +32,7 @@ spec:
             - name: PGPORT
               value: '5432'
             - name: PGDATABASE
-              value: fibvalues
+              value: postgres
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:

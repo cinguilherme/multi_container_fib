@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //postgres
 const { Pool } = require('pg');
+
 const pgClient = new Pool({
     user: keys.pgUser,
     host: keys.pgHost,
@@ -40,11 +41,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/values/all', async (req, res) => {
-    const values = await pgClient.query('select * from values');
-    res.send(values.rows);
+    try {
+        const values = await pgClient.query('select * from values');
+        res.send(values.rows);
+    } catch (e) {
+        console.error('error here', e);
+        res.status(500).send({"error in db": e.getStack});
+    }    
 });
 
 app.get('/values/current', async (req, res) => {
+    console.log('geting values');
     redisClient.hgetall('values', (err, values) => {
         res.send(values);
     });

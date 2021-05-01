@@ -5,7 +5,7 @@ metadata:
   name: worker-deployment
 
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       component: worker
@@ -23,7 +23,7 @@ spec:
               cpu: 50m
             limits:
               memory: 128Mi
-              cpu: 100m
+              cpu: 50m
           env:
             - name: REDIS_HOST
               value: redis-clusterip-service

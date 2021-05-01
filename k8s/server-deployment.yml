@@ -5,7 +5,7 @@ metadata:
   name: server-deployment
 
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       component: api
@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
         - name: server
-          image: cinguilherme/multic-server:v3
+          image: cinguilherme/multic-server
           resources:
             requests:
               memory: 128Mi
               cpu: 50m
             limits:
-              memory: 256Mi
-              cpu: 100m
+              memory: 128Mi
+              cpu: 50m
           ports:
             - containerPort: 5000
           env:

@@ -1,13 +1,24 @@
 sudo: required
 services:
   - docker
+env:
+  global:
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - SHA=$(git rev-parse HEAD)
 
-language: generic
+    language: generic
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_764bffec2c59_key -iv $encrypted_764bffec2c59_iv -in service-account.json.enc -out app/service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
-  - gcloud auth activate-service-account --key-file service-account.json
+  #- gcloud auth activate-service-account --key-file service-account.json
+  
+  - echo $DOCKER_PASSWORD | docker login -u "$DOCKER_USR" --password-stdin
 
+deploy:
+  provider: script
+  script: bash ./deploy.sh
+  on:
+    branch: main

@@ -1,11 +1,11 @@
-FROM node:15-alpine as builer
+FROM node:alpine as builer
 
-WORKDIR /app
+WORKDIR '/app'
 
-COPY package.json /app
+COPY package.json ./
 RUN npm install
 
-COPY . /app
+COPY . .
 RUN npm run build
 
 FROM nginx

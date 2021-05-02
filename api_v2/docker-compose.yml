@@ -13,3 +13,12 @@ services:
             - ./src:/app/src
             - ./test:/app/test
         
+
+    mongo_v2_dev:
+        image: mongo
+
+    postgres_v2_dev:
+        image: postgres
+
+    redis:
+        image: redis

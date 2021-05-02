@@ -7,9 +7,11 @@
     "rootDir": "./",
     /* Strict Type-Checking Options */
     "strict": true,                                 /* Enable all strict type-checking options. */
-    
+    "lib": [
+      "ESNext"
+    ],
     "esModuleInterop": true,
-        
+    "sourceMap": true,
     /* Experimental Options */
     "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
     

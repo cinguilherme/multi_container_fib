@@ -4,6 +4,7 @@ services:
 
     api_v2:
         image: api_v2:dev
+        container_name: api_v2_dev
         build: 
             context: .
             dockerfile: Dockerfile.dev
@@ -12,13 +13,28 @@ services:
         volumes: 
             - ./src:/app/src
             - ./test:/app/test
+        environment: 
+            - REDIS_HOST=redis_v2_dev
+            - REDIS_PORT=6379
+            - PG_HOST=postgres_v2_dev
+            - PG_USER=postgres
+            - PG_PASS=postgrespassword
+            - PG_PORT=5432
         
-
     mongo_v2_dev:
         image: mongo
+        container_name: mongo_v2_dev
 
     postgres_v2_dev:
         image: postgres
+        container_name: postgres_v2_dev
+        ports:
+            - 5432:5432
+        environment: 
+            - PGPASSWORD=postgrespassword
 
-    redis:
+    redis_v2_dev:
         image: redis
+        container_name: redis_v2_dev
+        ports:
+            - 6379:6379

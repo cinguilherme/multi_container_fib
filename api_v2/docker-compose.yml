@@ -1,0 +1,15 @@
+version: "3"
+
+services: 
+
+    api_v2:
+        image: api_v2:dev
+        build: 
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - 3002:3002
+        volumes: 
+            - ./src:/app/src
+            - ./test:/app/test
+        
